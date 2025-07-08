@@ -5,10 +5,6 @@ import { connectDB } from "./db.js";
 import taskRoutes from "./routes/tasks";
 import boardRoutes from "./routes/boards";
 
-// @ts-ignore
-const __dirname = __dirname;
-
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
