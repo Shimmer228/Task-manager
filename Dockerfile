@@ -4,10 +4,10 @@ WORKDIR /app/client
 
 COPY client/package*.json ./
 RUN npm install
-
 COPY client/. ./
 RUN npm run build
 
+# ТЕПЕР все правильно: dist всередині client
 RUN echo "✅ React build:" && ls -al /app/client/dist
 
 # 2. Побудова бекенду
@@ -16,13 +16,12 @@ WORKDIR /app/server
 
 COPY server/package*.json ./
 RUN npm install
-
 COPY server/. ./
-COPY --from=frontend /app/server/client ./client/dist
 
-RUN echo "✅ Копія фронтенду:" && ls -al ./client/dist
+# Копіюємо звичайну dist
+COPY --from=frontend /app/client/dist ./client/dist
+RUN echo "✅ Після копії:" && ls -al ./client/dist
 
 RUN npm run build
-
 WORKDIR /app/server
 CMD ["npm", "start"]
