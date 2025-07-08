@@ -10,8 +10,13 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/tasks", taskRoutes);
-app.use('/api/boards', boardRoutes);
+try {
+  app.use("/api/tasks", taskRoutes);
+  app.use("/api/boards", boardRoutes);
+} catch (err) {
+  console.error("Route setup error:", err);
+}
+
 
 connectDB().then(() => {
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
