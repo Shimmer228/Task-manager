@@ -19,7 +19,7 @@ RUN npm install
 COPY server/. ./
 
 # Копіюємо звичайну dist
-COPY --from=frontend /app/client/dist ./client/dist
+COPY --from=frontend /app/client/dist ./dist/client
 RUN echo "✅ Після копії:" && ls -al ./client/dist
 
 RUN npm run build

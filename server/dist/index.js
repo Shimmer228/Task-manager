@@ -9,8 +9,6 @@ const path_1 = __importDefault(require("path"));
 const db_js_1 = require("./db.js");
 const tasks_1 = __importDefault(require("./routes/tasks"));
 const boards_1 = __importDefault(require("./routes/boards"));
-// @ts-ignore
-const __dirname = __dirname;
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 5000;
 app.use((0, cors_1.default)());
