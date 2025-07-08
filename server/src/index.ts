@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
-import { connectDB } from "./db";
+import { connectDB } from "./db.js";
 import taskRoutes from "./routes/tasks";
-import boardRoutes from "./routes/boards";
+import boardRoutes from "./routes/boards";W
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
