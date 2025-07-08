@@ -1,29 +1,23 @@
-# 1. Побудова фронтенду
+# === 1. Фронтенд ===
 FROM node:20 AS frontend
 WORKDIR /app/client
-
 COPY client/package*.json ./
 RUN npm install
-
-COPY client/. ./
+COPY client/ ./
 RUN npm run build
 
-RUN echo "✅ React build:" && ls -al /app/client/dist
-
-# 2. Побудова бекенду
+# === 2. Бекенд ===
 FROM node:20 AS backend
 WORKDIR /app/server
 
 COPY server/package*.json ./
 RUN npm install
-
-COPY server/. ./
-
-# Копіюємо React-збірку у папку, де її чекає Express
-COPY --from=frontend /app/client/dist ./dist/client
-RUN echo "✅ Після копії:" && ls -al ./dist/client
-
-# Компільований TS-код
+COPY server/ ./
 RUN npm run build
 
+# 🔁 Вставляємо фронт білд у правильну папку
+COPY --from=frontend /app/client/dist ./client
+
 CMD ["npm", "start"]
+RUN echo "📁 Вміст server/client:" && ls -al ./client
+RUN echo "📁 Вміст server/dist:" && ls -al ./dist
