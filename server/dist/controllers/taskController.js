@@ -1,27 +1,31 @@
-import { Task } from "../models/Task";
-export const getTasks = async (req, res) => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.reorderTasks = exports.deleteTask = exports.updateTask = exports.createTask = exports.getTasks = void 0;
+const Task_1 = require("../models/Task");
+const getTasks = async (req, res) => {
     const { boardId } = req.params;
     try {
-        const tasks = await Task.find({ boardId }).sort({ status: 1, order: 1 });
+        const tasks = await Task_1.Task.find({ boardId }).sort({ status: 1, order: 1 });
         res.json(tasks);
     }
     catch (err) {
         res.status(500).json({ error: "Failed to fetch tasks" });
     }
 };
-export const createTask = async (req, res) => {
+exports.getTasks = getTasks;
+const createTask = async (req, res) => {
     const { boardId } = req.params;
     const { title, description, status } = req.body;
     console.log("Create task request body:", req.body);
     console.log("Looking for maxOrderTask with:", { boardId, status });
-    const maxOrderTask = await Task.findOne({ boardId, status }).sort("-order");
+    const maxOrderTask = await Task_1.Task.findOne({ boardId, status }).sort("-order");
     console.log("maxOrderTask:", maxOrderTask);
     const newOrder = maxOrderTask ? maxOrderTask.order + 1 : 0;
     console.log("newOrder:", newOrder);
     try {
-        const maxOrderTask = await Task.findOne({ boardId, status }).sort("-order");
+        const maxOrderTask = await Task_1.Task.findOne({ boardId, status }).sort("-order");
         const newOrder = maxOrderTask ? maxOrderTask.order + 1 : 0;
-        const task = new Task({
+        const task = new Task_1.Task({
             title,
             description,
             status,
@@ -35,21 +39,24 @@ export const createTask = async (req, res) => {
         res.status(500).json({ error: "Failed to create task" });
     }
 };
-export const updateTask = async (req, res) => {
+exports.createTask = createTask;
+const updateTask = async (req, res) => {
     const { id } = req.params;
-    const updated = await Task.findByIdAndUpdate(id, req.body, { new: true });
+    const updated = await Task_1.Task.findByIdAndUpdate(id, req.body, { new: true });
     res.json(updated);
 };
-export const deleteTask = async (req, res) => {
+exports.updateTask = updateTask;
+const deleteTask = async (req, res) => {
     const { id } = req.params;
-    await Task.findByIdAndDelete(id);
+    await Task_1.Task.findByIdAndDelete(id);
     res.sendStatus(204);
 };
-export const reorderTasks = async (req, res) => {
+exports.deleteTask = deleteTask;
+const reorderTasks = async (req, res) => {
     const { tasks } = req.body;
     try {
         for (const { _id, order } of tasks) {
-            await Task.findByIdAndUpdate(_id, { order });
+            await Task_1.Task.findByIdAndUpdate(_id, { order });
         }
         res.status(200).json({ message: "Order updated" });
     }
@@ -57,3 +64,4 @@ export const reorderTasks = async (req, res) => {
         res.status(500).json({ error: "Failed to reorder tasks" });
     }
 };
+exports.reorderTasks = reorderTasks;

@@ -1,8 +1,11 @@
-import { Board } from "../models/Board";
-import { nanoid } from "nanoid";
-export const createBoard = async (_, res) => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getBoards = exports.createBoard = void 0;
+const Board_1 = require("../models/Board");
+const nanoid_1 = require("nanoid");
+const createBoard = async (_, res) => {
     try {
-        const board = await Board.create({ id: nanoid() });
+        const board = await Board_1.Board.create({ id: (0, nanoid_1.nanoid)() });
         res.json({ id: board.id });
     }
     catch (err) {
@@ -10,9 +13,10 @@ export const createBoard = async (_, res) => {
         res.status(500).json({ error: "Failed to create board" });
     }
 };
-export const getBoards = async (_, res) => {
+exports.createBoard = createBoard;
+const getBoards = async (_, res) => {
     try {
-        const boards = await Board.find();
+        const boards = await Board_1.Board.find();
         res.json(boards);
     }
     catch (err) {
@@ -20,3 +24,4 @@ export const getBoards = async (_, res) => {
         res.status(500).json({ error: "Failed to get boards" });
     }
 };
+exports.getBoards = getBoards;
