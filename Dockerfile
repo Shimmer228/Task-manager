@@ -1,18 +1,29 @@
 # 1. Побудова фронтенду
 FROM node:18 AS frontend
-WORKDIR /app
-COPY client ./client
-RUN cd client && npm install && npm run build
+
+WORKDIR /app/client
+
+COPY client/package*.json ./
+RUN npm install
+
+COPY client/. ./
+RUN npm run build
 
 # 2. Побудова бекенду
 FROM node:18 AS backend
-WORKDIR /app
-COPY server ./server
-COPY --from=frontend /app/client/client/dist ./server/client/dist
 
+WORKDIR /app/server
 
-RUN cd server && npm install
-RUN cd server && npm run build
+COPY server/package*.json ./
+RUN npm install
+
+COPY server/. ./
+
+# Копіюємо з фронтенду збірку в бекенд
+COPY --from=frontend /app/client/dist ./client/dist
+
+# Компілюємо TS бекенду
+RUN npm run build
 
 # 3. Запуск
 WORKDIR /app/server
