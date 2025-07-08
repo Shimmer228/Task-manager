@@ -8,7 +8,7 @@ RUN cd client && npm install && npm run build
 FROM node:18 AS backend
 WORKDIR /app
 COPY server ./server
-COPY --from=frontend /app/client/dist ./server/client
+COPY --from=frontend /app/client/ ./server/client
 RUN cd server && npm install
 
 # 3. Запуск
