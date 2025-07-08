@@ -3,7 +3,7 @@ import cors from "cors";
 import path from "path";
 import { connectDB } from "./db.js";
 import taskRoutes from "./routes/tasks";
-import boardRoutes from "./routes/boards";W
+import boardRoutes from "./routes/boards";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
