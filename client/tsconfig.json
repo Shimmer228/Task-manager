@@ -4,7 +4,8 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "skipLibCheck": true,
-    "types": ["node"]
+    "types": ["node"],
+    "module": "commonjs"
   },
   "files": [],
   "references": [
