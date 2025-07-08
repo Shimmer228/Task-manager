@@ -5,7 +5,7 @@ import {
   updateTask,
   deleteTask,
   reorderTasks
-} from "../controllers/taskController.ts";
+} from "../controllers/taskController";
 
 const router = Router();
 router.put("/reorder", reorderTasks);
