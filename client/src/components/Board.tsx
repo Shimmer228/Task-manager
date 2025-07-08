@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { createBoard, setBoardId } from "../features/board/boardSlice";
 import OverlayCard from "./OverlayCard";
+import type { TaskType } from "../types";
+
 import {
   fetchTasks,
   updateTask,

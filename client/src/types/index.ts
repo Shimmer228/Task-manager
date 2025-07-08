@@ -3,5 +3,6 @@ export type TaskType = {
   title: string;
   description: string;
   status: "todo" | "inprogress" | "done";
+  order: number;
   boardId: string;
 };
