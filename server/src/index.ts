@@ -7,7 +7,7 @@ import { connectDB } from "./db.js";
 import taskRoutes from "./routes/tasks";
 import boardRoutes from "./routes/boards";
 
-const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "client")));
 
 
 const app = express();
