@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createBoard, getBoards } from "../controllers/boardController";
+import { createBoard, getBoards } from "../controllers/boardController.ts";
 
 const router = Router();
 

@@ -2,8 +2,8 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import { connectDB } from "./db.js";
-import taskRoutes from "./routes/tasks";
-import boardRoutes from "./routes/boards";
+import taskRoutes from "./routes/tasks.ts";
+import boardRoutes from "./routes/boards.ts";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);

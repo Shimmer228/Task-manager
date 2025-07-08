@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Board } from "../models/Board";
+import { Board } from "../models/Board.ts";
 import { nanoid } from "nanoid";
 
 export const createBoard = async (_: Request, res: Response) => {
