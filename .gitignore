@@ -1,5 +1,6 @@
 # node_modules (і для клієнта, і для бекенду)
 **/node_modules/
+**/dist/
 
 # збірки React
 todo-client/build/
