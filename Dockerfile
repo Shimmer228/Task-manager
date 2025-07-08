@@ -8,6 +8,7 @@ RUN npm install
 
 COPY client/. ./
 RUN npm run build
+RUN echo "React build вміст:" && ls -al /app/client/dist
 
 # 2. Побудова бекенду
 FROM node:18 AS backend
@@ -21,7 +22,7 @@ COPY server/. ./
 
 # Копіюємо з фронтенду збірку в бекенд
 COPY --from=frontend /app/client/dist ./client/dist
-
+RUN echo "Після копіювання з frontend:" && ls -al ./client/dist
 # Компілюємо TS бекенду
 RUN npm run build
 
