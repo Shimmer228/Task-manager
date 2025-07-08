@@ -1,3 +1,4 @@
+// client/vite.config.ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { dirname, resolve } from 'path';
@@ -8,15 +9,13 @@ const __dirname = dirname(__filename);
 
 export default defineConfig({
   plugins: [react()],
-
   build: {
-    outDir: 'dist',
-    emptyOutDir: true
+    outDir: '../server/client', // React білд йде прямо в server/client
+    emptyOutDir: true,
   },
-
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src')
-    }
-  }
+      '@': resolve(__dirname, './src'),
+    },
+  },
 });
