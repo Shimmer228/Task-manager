@@ -21,9 +21,6 @@ import {
 import { SortableContext, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 
 import Column from "./Column";
-import Card from "./Card";
-
-const STATUSES = ["todo", "inprogress", "done"] as const;
 
 export default function Board() {
   const boardId = useAppSelector((state) => state.board.id);
@@ -56,23 +53,6 @@ export default function Board() {
     }
   }, [boardId]);
 
-  const handleConnect = () => {
-    if (!inputId.trim()) return;
-    localStorage.setItem("boardId", inputId.trim());
-    dispatch(setBoardId(inputId.trim()));
-    dispatch(fetchTasks(inputId.trim()));
-  };
-
-  const handleNewBoard = () => {
-    dispatch(createBoard())
-      .unwrap()
-      .then((newId) => {
-        localStorage.setItem("boardId", newId);
-        dispatch(setBoardId(newId));
-        dispatch(fetchTasks(newId));
-      })
-      .catch((err) => console.error("Failed to create board", err));
-  };
 
   const sensors = useSensors(useSensor(PointerSensor));
 

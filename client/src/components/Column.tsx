@@ -28,6 +28,7 @@ export default function Column({ title, tasks, status, boardId }: Props) {
           description: "",
           status,
           boardId,
+          order: 0,
         },
       })
     );
