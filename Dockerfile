@@ -18,7 +18,7 @@ COPY server/package*.json ./
 RUN npm install
 
 COPY server/. ./
-COPY --from=frontend /app/client/dist ./client/dist
+COPY --from=frontend /app/server/client ./client/dist
 
 RUN echo "✅ Копія фронтенду:" && ls -al ./client/dist
 
