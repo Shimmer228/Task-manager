@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "VITE_API_URL": "https://task-manager-production-ca52.up.railway.app/api"
+    }
+  }
+}
