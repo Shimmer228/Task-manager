@@ -28,7 +28,7 @@ export const createTask = Toolkit.createAsyncThunk(
 export const reorderTasks = Toolkit.createAsyncThunk(
   "tasks/reorderTasks",
   async (tasks: { _id: string; order: number }[]) => {
-    await axios.put('${API}/reorder', { tasks });
+  await axios.put(`${API}/reorder`, { tasks });
     return tasks;
   }
 );
