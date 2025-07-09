@@ -9,6 +9,7 @@ const __dirname = dirname(__filename);
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
+  console.log(">>> ENV:", process.env.VITE_API_URL);
 
   return {
     plugins: [react()],
