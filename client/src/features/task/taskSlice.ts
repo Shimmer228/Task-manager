@@ -2,7 +2,7 @@ import * as Toolkit from "@reduxjs/toolkit";
 import axios from "axios";
 import type { TaskType } from "../../types";
 
-const API = `${import.meta.env.VITE_API_URL}/api/tasks`;
+const API = `${import.meta.env.VITE_API_URL}/tasks`;
 
 export const fetchTasks = Toolkit.createAsyncThunk(
   "tasks/fetchTasks",
@@ -28,7 +28,7 @@ export const createTask = Toolkit.createAsyncThunk(
 export const reorderTasks = Toolkit.createAsyncThunk(
   "tasks/reorderTasks",
   async (tasks: { _id: string; order: number }[]) => {
-    await axios.put("http://localhost:5000/api/tasks/reorder", { tasks });
+    await axios.put(${API}/reorder, { tasks });
     return tasks;
   }
 );
