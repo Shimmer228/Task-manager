@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API = `${import.meta.env.VITE_API_URL}/boards`;
+const API = `${import.meta.env.VITE_API_URL}/api/boards`;
 
 
 export const createBoard = createAsyncThunk("board/create", async () => {

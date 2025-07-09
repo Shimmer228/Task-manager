@@ -2,7 +2,7 @@ import * as Toolkit from "@reduxjs/toolkit";
 import axios from "axios";
 import type { TaskType } from "../../types";
 
-const API = `${import.meta.env.VITE_API_URL}/tasks`;
+const API = `${import.meta.env.VITE_API_URL}/api/tasks`;
 
 export const fetchTasks = Toolkit.createAsyncThunk(
   "tasks/fetchTasks",
