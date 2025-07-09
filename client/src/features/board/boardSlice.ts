@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API = "http://localhost:5000/api/boards";
+const API = `${import.meta.env.VITE_API_URL}/boards`;
+
 
 export const createBoard = createAsyncThunk("board/create", async () => {
   const res = await axios.post(API);
